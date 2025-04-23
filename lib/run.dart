@@ -14,7 +14,7 @@ class Run {
     this.encoding = convert__.utf8,
   });
 
-  /// Execute command in bash
+  /// Execute command and returns stdout
   Future<String> $(
     String command, {
     String? workingDirectory,
@@ -31,10 +31,19 @@ class Run {
       environment: environment,
       silent: silent,
       ignoreError: ignoreError,
+      autoQuote: false,
     );
   }
 
-  /// Execute command in bash
+  String _quote(String arg) {
+    if (arg.startsWith('"') || arg.startsWith("'")) {
+      return arg;
+    } else {
+      return '"$arg"';
+    }
+  }
+
+  /// Execute command and returns stdout
   Future<String> $$(
     String executable, {
     List<String> arguments = const [],
@@ -43,8 +52,13 @@ class Run {
     bool includeParentEnvironment = true,
     bool silent = false,
     bool ignoreError = false,
+    bool autoQuote = true,
   }) async {
     workingDirectory ??= io__.Directory.current.absolute.path;
+    if (autoQuote) {
+      executable = _quote(executable);
+      arguments = arguments.map((x) => _quote(x)).toList();
+    }
     String display = misc__.makeCommandLine([executable, ...arguments]);
     if (useUnixShell) {
       String command = misc__.makeCommandLine([executable, ...arguments]);

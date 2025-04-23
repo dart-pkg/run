@@ -7,10 +7,11 @@ void main() {
     test('run1', () async {
       final run = Run(useUnixShell: true, unixShell: 'sh');
       await run.$$('ls');
-      await run.$$('ls', arguments: ['-l']);
+      await run.$$('ls', arguments: ['-l'], autoQuote: false);
       String find = await run.$$(
         'find',
-        arguments: ['.', '-name', '*.dart'],
+        arguments: ['.', '-name', '"*.dart"'],
+        autoQuote: false,
         silent: true,
       );
       echo(find, r'find');
