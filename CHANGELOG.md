@@ -11,3 +11,7 @@
 ## 2025.423.2250
 
 - Introduced Run.$() and Run.$$()
+
+## 2025.424.19
+
+- Updated dependincy to misc package (v2025.424.12)

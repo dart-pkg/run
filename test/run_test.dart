@@ -10,7 +10,7 @@ void main() {
       await run.$$('ls', arguments: ['-l']);
       String find = await run.$$(
         'find',
-        arguments: ['.', '-name', '"*.dart"'],
+        arguments: ['.', '-name', '*.dart'],
         silent: true,
       );
       echo(find, r'find');
