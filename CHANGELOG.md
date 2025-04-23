@@ -19,3 +19,7 @@
 ## 2025.424.35
 
 - Updated dependincy to misc package (v2025.424.28)
+
+## 2025.424.126
+
+- Updated package dpencencies: misc 2025.424.118 (was 2025.424.56)
