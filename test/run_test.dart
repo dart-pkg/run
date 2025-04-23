@@ -25,8 +25,9 @@ void main() {
       await run.$('dart pub deps --no-dev --style list | sed "/^ .*/d"');
       // String ls2 = await run.$('ls', arguments: ['xyz'], silent: true, ignoreError: false);
       // echo(ls2, r'ls2');
-      //final run2 = Run();
-      //await run2.$$('dart', arguments: ['pub', 'deps']);
+      final run2 = Run();
+      await run2.$$('dart', arguments: ['pub', 'deps']);
+      await run2.$('"dart" "pub" "deps"');
     });
   });
 }

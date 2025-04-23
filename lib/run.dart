@@ -43,6 +43,16 @@ class Run {
     }
   }
 
+  String _unquote(String arg) {
+    if (arg.startsWith('"') || arg.startsWith("'")) {
+      arg = arg.substring(1);
+    }
+    if (arg.endsWith('"') || arg.endsWith("'")) {
+      arg = arg.substring(0, arg.length - 1);
+    }
+    return arg;
+  }
+
   /// Execute command and returns stdout
   Future<String> $$(
     String executable, {
@@ -64,6 +74,9 @@ class Run {
       String command = misc__.makeCommandLine([executable, ...arguments]);
       executable = unixShell;
       arguments = ['-c', command];
+    } else {
+      executable = _unquote(executable);
+      arguments = arguments.map((x) => _unquote(x)).toList();
     }
     print('[$workingDirectory] \$ $display');
     var completer = async__.Completer<String>();

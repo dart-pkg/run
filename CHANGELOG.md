@@ -27,3 +27,7 @@
 ## 2025.424.154
 
 - Introduced autoQuote parameter to Run.$$()
+
+## 2025.424.220
+
+- Introduced _unquote()
