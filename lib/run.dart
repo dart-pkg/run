@@ -14,8 +14,28 @@ class Run {
     this.encoding = convert__.utf8,
   });
 
-  /// Execute command (string) in bash
+  /// Execute command in bash
   Future<String> $(
+    String command, {
+    String? workingDirectory,
+    Map<String, String>? environment,
+    bool includeParentEnvironment = true,
+    bool silent = false,
+    bool ignoreError = false,
+  }) async {
+    List<String> split = misc__.splitCommandLine(command);
+    return $$(
+      split[0],
+      arguments: split.sublist(1),
+      workingDirectory: workingDirectory,
+      environment: environment,
+      silent: silent,
+      ignoreError: ignoreError,
+    );
+  }
+
+  /// Execute command in bash
+  Future<String> $$(
     String executable, {
     List<String> arguments = const [],
     String? workingDirectory,
