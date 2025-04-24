@@ -39,3 +39,7 @@
 ## 2025.424.1312
 
 - Modified _quote()
+
+## 2025.424.1501
+
+- Run.$() and Run.$$() accept returnCode named parameter and return int exitCode

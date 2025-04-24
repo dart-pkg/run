@@ -1,6 +1,6 @@
 name: run
 description: run project
-version: 2025.424.1312
+version: 2025.424.1501
 homepage:
 repository: "https://github.com/dart-pkg/run"
 environment:

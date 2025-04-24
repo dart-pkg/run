@@ -15,13 +15,13 @@ class Run {
   });
 
   /// Execute command and returns stdout
-  Future<String> $(
+  Future<dynamic> $(
     String command, {
     String? workingDirectory,
     Map<String, String>? environment,
     bool includeParentEnvironment = true,
+    bool returnCode = false,
     bool silent = false,
-    bool ignoreError = false,
   }) async {
     List<String> split = misc__.splitCommandLine(command);
     return $$(
@@ -29,8 +29,8 @@ class Run {
       arguments: split.sublist(1),
       workingDirectory: workingDirectory,
       environment: environment,
+      returnCode: returnCode,
       silent: silent,
-      ignoreError: ignoreError,
       autoQuote: false,
     );
   }
@@ -54,15 +54,15 @@ class Run {
   }
 
   /// Execute command and returns stdout
-  Future<String> $$(
+  Future<dynamic> $$(
     String executable, {
     List<String> arguments = const [],
     String? workingDirectory,
     Map<String, String>? environment,
     bool includeParentEnvironment = true,
     bool silent = false,
-    bool ignoreError = false,
     bool autoQuote = true,
+    bool returnCode = false,
   }) async {
     workingDirectory ??= io__.Directory.current.absolute.path;
     if (autoQuote) {
@@ -79,7 +79,7 @@ class Run {
       arguments = arguments.map((x) => _unquote(x)).toList();
     }
     print('[$workingDirectory] \$ $display');
-    var completer = async__.Completer<String>();
+    var completer = async__.Completer<dynamic>();
     String buffer = '';
     io__.Process.start(
       executable,
@@ -99,8 +99,14 @@ class Run {
         io__.stderr.write(data);
       });
       process.exitCode.then((code) {
-        if ((!ignoreError) && code != 0) {
-          throw 'ShellException($display, exitCode $code, workingDirectory: $workingDirectory)';
+        if (returnCode) {
+          completer.complete(code);
+          return;
+        }
+        if (code != 0) {
+          throw Exception(
+            '$display, exitCode $code, workingDirectory: $workingDirectory',
+          );
         }
         if (buffer.endsWith('\r\n')) {
           buffer = buffer.substring(0, buffer.length - 2);

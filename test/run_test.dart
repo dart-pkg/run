@@ -15,11 +15,11 @@ void main() {
         silent: true,
       );
       echo(find, r'find');
-      String ls1 = await run.$$(
+      int ls1 = await run.$$(
         'ls',
         arguments: ['xyz'],
         silent: true,
-        ignoreError: true,
+        returnCode: true,
       );
       echo(ls1, r'ls1');
       await run.$('dart pub deps --no-dev --style list | sed "/^ .*/d"');
