@@ -31,3 +31,7 @@
 ## 2025.424.220
 
 - Introduced _unquote()
+
+## 2025.424.1258
+
+- Updated package dependencies: misc 2025.424.1249 (was 2025.424.118)
