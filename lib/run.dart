@@ -1,7 +1,8 @@
 import 'dart:io' as io__;
 import 'dart:async' as async__;
 import 'dart:convert' as convert__;
-import 'package:misc/misc.dart' as misc__;
+//import 'package:misc/misc.dart' as misc__;
+import 'package:std/misc.dart' as misc__;
 
 class Run {
   bool useUnixShell;
@@ -69,9 +70,9 @@ class Run {
       executable = _quote(executable);
       arguments = arguments.map((x) => _quote(x)).toList();
     }
-    String display = misc__.makeCommandLine([executable, ...arguments]);
+    String display = misc__.joinCommandLine([executable, ...arguments]);
     if (useUnixShell) {
-      String command = misc__.makeCommandLine([executable, ...arguments]);
+      String command = misc__.joinCommandLine([executable, ...arguments]);
       executable = unixShell;
       arguments = ['-c', command];
     } else {

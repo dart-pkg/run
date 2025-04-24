@@ -43,3 +43,7 @@
 ## 2025.424.1501
 
 - Run.$() and Run.$$() accept returnCode named parameter and return int exitCode
+
+## 2025.424.1840
+
+- Removed dependency to misc package
