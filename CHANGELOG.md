@@ -35,3 +35,7 @@
 ## 2025.424.1258
 
 - Updated package dependencies: misc 2025.424.1249 (was 2025.424.118)
+
+## 2025.424.1312
+
+- Modified _quote()

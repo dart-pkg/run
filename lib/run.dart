@@ -36,7 +36,7 @@ class Run {
   }
 
   String _quote(String arg) {
-    if (arg.startsWith('"') || arg.startsWith("'")) {
+    if (arg.startsWith('"') || arg.startsWith("'") || arg.startsWith('`')) {
       return arg;
     } else {
       return '"$arg"';
