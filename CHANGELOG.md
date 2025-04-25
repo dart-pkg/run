@@ -47,3 +47,7 @@
 ## 2025.424.1840
 
 - Removed dependency to misc package
+
+## 2025.426.409
+
+- Renamed Run.$() to Run.run() and Run.$$() to Run.run$()

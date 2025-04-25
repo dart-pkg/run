@@ -1,9 +1,9 @@
 import 'dart:io' as io__;
 import 'dart:async' as async__;
 import 'dart:convert' as convert__;
-//import 'package:misc/misc.dart' as misc__;
 import 'package:std/misc.dart' as misc__;
 
+/// Process manager for executing command lines
 class Run {
   bool useUnixShell;
   String unixShell;
@@ -16,22 +16,22 @@ class Run {
   });
 
   /// Execute command and returns stdout
-  Future<dynamic> $(
+  Future<dynamic> run(
     String command, {
     String? workingDirectory,
     Map<String, String>? environment,
     bool includeParentEnvironment = true,
-    bool returnCode = false,
     bool silent = false,
+    bool returnCode = false,
   }) async {
     List<String> split = misc__.splitCommandLine(command);
-    return $$(
+    return run$(
       split[0],
       arguments: split.sublist(1),
       workingDirectory: workingDirectory,
       environment: environment,
-      returnCode: returnCode,
       silent: silent,
+      returnCode: returnCode,
       autoQuote: false,
     );
   }
@@ -55,15 +55,15 @@ class Run {
   }
 
   /// Execute command and returns stdout
-  Future<dynamic> $$(
+  Future<dynamic> run$(
     String executable, {
     List<String> arguments = const [],
     String? workingDirectory,
     Map<String, String>? environment,
     bool includeParentEnvironment = true,
     bool silent = false,
-    bool autoQuote = true,
     bool returnCode = false,
+    bool autoQuote = true,
   }) async {
     workingDirectory ??= io__.Directory.current.absolute.path;
     if (autoQuote) {
@@ -109,15 +109,16 @@ class Run {
             '$display, exitCode $code, workingDirectory: $workingDirectory',
           );
         }
-        if (buffer.endsWith('\r\n')) {
-          buffer = buffer.substring(0, buffer.length - 2);
-        } else if (buffer.endsWith('\n')) {
-          buffer = buffer.substring(0, buffer.length - 1);
-        } else if (buffer.endsWith('\r')) {
-          buffer = buffer.substring(0, buffer.length - 1);
-        }
-        buffer = buffer.replaceAll('\r\n', '\n');
-        buffer = buffer.replaceAll('\r', '\n');
+        // if (buffer.endsWith('\r\n')) {
+        //   buffer = buffer.substring(0, buffer.length - 2);
+        // } else if (buffer.endsWith('\n')) {
+        //   buffer = buffer.substring(0, buffer.length - 1);
+        // } else if (buffer.endsWith('\r')) {
+        //   buffer = buffer.substring(0, buffer.length - 1);
+        // }
+        // buffer = buffer.replaceAll('\r\n', '\n');
+        // buffer = buffer.replaceAll('\r', '\n');
+        buffer = misc__.adjustTextNewlines(buffer);
         completer.complete(buffer);
       });
     });
