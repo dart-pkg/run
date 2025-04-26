@@ -51,3 +51,7 @@
 ## 2025.426.409
 
 - Renamed Run.$() to Run.run() and Run.$$() to Run.run$()
+
+## 2025.426.1714
+
+- Backport from std/command_runner.dart

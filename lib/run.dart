@@ -116,8 +116,7 @@ class Run {
         // } else if (buffer.endsWith('\r')) {
         //   buffer = buffer.substring(0, buffer.length - 1);
         // }
-        // buffer = buffer.replaceAll('\r\n', '\n');
-        // buffer = buffer.replaceAll('\r', '\n');
+        buffer = buffer.trimRight();
         buffer = misc__.adjustTextNewlines(buffer);
         completer.complete(buffer);
       });
