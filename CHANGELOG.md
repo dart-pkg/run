@@ -55,3 +55,7 @@
 ## 2025.426.1714
 
 - Backport from std/command_runner.dart
+
+## 2025.426.2300
+
+- Backport from std/command_runner.dart. Changed signature of Run.run$()

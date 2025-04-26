@@ -6,27 +6,19 @@ void main() {
   group('Run', () {
     test('run1', () async {
       final run = Run(useUnixShell: true, unixShell: 'sh');
-      await run.run$('ls');
-      await run.run$('ls', arguments: ['-l'], autoQuote: false);
+      await run.run$(['ls']);
+      await run.run$(['ls', '-l'], autoQuote: false);
       String find = await run.run$(
-        'find',
-        arguments: ['.', '-name', '"*.dart"'],
+        ['find', '.', '-name', '"*.dart"'],
         autoQuote: false,
         silent: true,
       );
       echo(find, r'find');
-      int ls1 = await run.run$(
-        'ls',
-        arguments: ['xyz'],
-        silent: true,
-        returnCode: true,
-      );
+      int ls1 = await run.run$(['ls', 'xyz'], silent: true, returnCode: true);
       echo(ls1, r'ls1');
       await run.run('dart pub deps --no-dev --style list | sed "/^ .*/d"');
-      // String ls2 = await run.$('ls', arguments: ['xyz'], silent: true, ignoreError: false);
-      // echo(ls2, r'ls2');
       final run2 = Run();
-      await run2.run$('dart', arguments: ['pub', 'deps']);
+      await run2.run$(['dart', 'pub', 'deps']);
       await run2.run('"dart" "pub" "deps"');
     });
   });
