@@ -59,3 +59,14 @@
 ## 2025.426.2300
 
 - Backport from std/command_runner.dart. Changed signature of Run.run$()
+
+## 2025.426.2330
+
+- Added: example/example.dart
+
+```
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+-version: 2025.426.2300
++version: 2025.426.2330
+```

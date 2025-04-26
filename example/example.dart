@@ -1,12 +1,3 @@
-# run
-[![Pub](https://img.shields.io/pub/v/run.svg)](https://pub.dartlang.org/packages/run)
-
-Wrapper over `dart:io` [Process] API's that supports features like environment management, user switches, and more.
-
-Useful for writing shell utility scripts in Dart, or within applications that perform system administration
-tasks on behalf of other users.
-
-```dart
 import 'dart:io';
 import 'package:run/run.dart';
 
@@ -23,7 +14,11 @@ main() async {
   // Use `returnCode: true' to get process exit code.
   //
   // Otherwise, a Error is thrown.
-  int find = await shell.run$(['find', '.', '-name', '"*.dart"'], autoQuote: false, returnCode: true);
+  int find = await shell.run$(
+    ['find', '.', '-name', '"*.dart"'],
+    autoQuote: false,
+    returnCode: true,
+  );
   print(find);
   if (find != 0) {
     exit(find);
@@ -38,17 +33,19 @@ main() async {
   print('cwd: `$pwd`');
 
   // You can use | within command line (when Run() was constructed with `useUnixShell: true'.
-  String find2 = await shell.run(
-    'find . -name "*.dart" | wc -l',
-  );
+  String find2 = await shell.run('find . -name "*.dart" | wc -l');
   print(find2);
 
   // You can use | within command line (when Run() was constructed with `useUnixShell: true'.
   // run$() quotes all of the arguments; so in order to use pipe (|) you need to specify `autoQuote: false'.
-  String find3 = await shell.run$(
-    ['find', '.', '-name', '"*.dart"', '|', 'wc', '-l'],
-    autoQuote: false
-  );
+  String find3 = await shell.run$([
+    'find',
+    '.',
+    '-name',
+    '"*.dart"',
+    '|',
+    'wc',
+    '-l',
+  ], autoQuote: false);
   print(find3);
 }
-```
