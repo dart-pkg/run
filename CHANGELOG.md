@@ -90,3 +90,19 @@
 +  #web:
 +  windows:
 ```
+
+## 2025.427.41
+
+- Added topics to pubspec.yaml
+
+```
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+-version: 2025.426.2344
++version: 2025.427.41
++topics:
++  - cli
++  - process
+-#executables:
+-#  run: main
+```
