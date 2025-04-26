@@ -70,3 +70,23 @@
 -version: 2025.426.2300
 +version: 2025.426.2330
 ```
+
+## 2025.426.2344
+
+- Added `platform:' to pubspec.yaml
+
+```
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+-description: run project
+-version: 2025.426.2330
++description: Wrapper over `dart:io` [Process] API's that supports additional features.
++version: 2025.426.2344
++platforms:
++  android:
++  ios:
++  linux:
++  macos:
++  #web:
++  windows:
+```
