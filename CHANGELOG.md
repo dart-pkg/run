@@ -106,3 +106,16 @@
 -#executables:
 -#  run: main
 ```
+
+## 2025.427.1715
+
+- Update dependencies
+
+```
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+-version: 2025.427.41
++version: 2025.427.1715
+-  std: ^2025.426.2248
++  std: ^2025.427.52
+```
