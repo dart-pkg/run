@@ -1,6 +1,6 @@
 name: run
 description: Wrapper over `dart:io` [Process] API's that supports additional features.
-version: 2025.427.1715
+version: 2025.428.1657
 homepage: 
 repository: https://github.com/dart-pkg/run
 environment:
