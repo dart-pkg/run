@@ -169,3 +169,18 @@
 -  std: ^2025.430.1833
 +  std: ^2025.501.843
 ```
+
+## 2025.502.2331
+
+- Backport to lib/run.dart from package:std/command_runner.dart
+
+```
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+-version: 2025.502.930
++version: 2025.502.2331
+-  std: ^2025.501.843
++  std: ^2025.502.2312
+-  output: ^2025.430.1731
++  output: ^2025.502.1958
+```
