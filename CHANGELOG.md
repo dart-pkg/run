@@ -197,3 +197,20 @@
 -  std: ^2025.502.2312
 +  std: ^2025.502.2358
 ```
+
+## 2025.524.1533
+
+- Backport from std/command_runner.dart
+
+```
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+-version: 2025.503.21
++version: 2025.524.1533
+-  std: ^2025.502.2358
++  std: ^2025.523.1954
+-  lints: ^5.1.1
++  lints: ^6.0.0
+-  test: ^1.25.15
++  test: ^1.26.2
+```

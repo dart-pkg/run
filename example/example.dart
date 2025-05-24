@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:run/run.dart';
 
-main() async {
+Future<void> main() async {
   var shell = Run(useUnixShell: true);
 
   // Pipe results to string, easily.
