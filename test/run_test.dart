@@ -1,3 +1,4 @@
+import 'dart:convert' as dart_convert;
 import 'package:test/test.dart';
 import 'package:output/output.dart';
 import 'package:run/run.dart';
@@ -9,15 +10,15 @@ void main() {
         /*encoding: SystemEncoding(),*/ useUnixShell: true,
         unixShell: 'sh',
       );
-      await run.run$(['ls']);
-      await run.run$(['ls', '-l'], autoQuote: false);
+      await run.run$(['ls'], encoding: dart_convert.utf8);
+      await run.run$(['ls', '-l'], encoding: dart_convert.utf8, autoQuote: false);
       String find = await run.run$(
         ['find', '.', '-name', '"*.dart"'],
         autoQuote: false,
         silent: true,
       );
       echo(find, r'find');
-      int ls1 = await run.run$(['ls', 'xyz'], silent: true, returnCode: true);
+      int ls1 = await run.run$(['ls', 'xyz'], encoding: dart_convert.utf8, silent: true, returnCode: true);
       echo(ls1, r'ls1');
       await run.run('dart pub deps --no-dev --style list | sed "/^ .*/d"');
       final run2 = Run(/*encoding: SystemEncoding()*/);
