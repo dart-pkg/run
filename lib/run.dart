@@ -72,6 +72,9 @@ class Run {
     String executable = command[0];
     List<String> arguments = command.sublist(1).toList();
     encoding ??= this.encoding;
+    if (workingDirectory != null) {
+      workingDirectory = std_misc.pathExpand(workingDirectory);
+    }
     workingDirectory ??= dart_io.Directory.current.absolute.path;
     if (autoQuote) {
       executable = _quote(executable);

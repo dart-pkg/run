@@ -10,7 +10,11 @@ void main() {
         /*encoding: SystemEncoding(),*/ useUnixShell: true,
         unixShell: 'sh',
       );
-      await run.run$(['ls'], encoding: dart_convert.utf8);
+      await run.run$(
+        ['ls'],
+        encoding: dart_convert.utf8,
+        workingDirectory: '~/',
+      );
       await run.run$(
         ['ls', '-l'],
         encoding: dart_convert.utf8,
