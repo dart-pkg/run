@@ -11,14 +11,23 @@ void main() {
         unixShell: 'sh',
       );
       await run.run$(['ls'], encoding: dart_convert.utf8);
-      await run.run$(['ls', '-l'], encoding: dart_convert.utf8, autoQuote: false);
+      await run.run$(
+        ['ls', '-l'],
+        encoding: dart_convert.utf8,
+        autoQuote: false,
+      );
       String find = await run.run$(
         ['find', '.', '-name', '"*.dart"'],
         autoQuote: false,
         silent: true,
       );
       echo(find, r'find');
-      int ls1 = await run.run$(['ls', 'xyz'], encoding: dart_convert.utf8, silent: true, returnCode: true);
+      int ls1 = await run.run$(
+        ['ls', 'xyz'],
+        encoding: dart_convert.utf8,
+        silent: true,
+        returnCode: true,
+      );
       echo(ls1, r'ls1');
       await run.run('dart pub deps --no-dev --style list | sed "/^ .*/d"');
       final run2 = Run(/*encoding: SystemEncoding()*/);
